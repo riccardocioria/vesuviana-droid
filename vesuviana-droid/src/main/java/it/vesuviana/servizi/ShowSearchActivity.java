@@ -14,6 +14,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -49,7 +50,8 @@ public class ShowSearchActivity extends ListActivity {
 
 			public void onItemClick(AdapterView<?> parent, View view, int position,
 					long id) {
-				Context mContext = getApplicationContext();
+				Context mContext = parent.getContext();
+				Log.i("ShowSearchActivity", "Creating dialog...");
 				Dialog dialog = new Dialog(mContext);
 				
 				dialog.setContentView(R.layout.detail_dialog);
@@ -57,8 +59,8 @@ public class ShowSearchActivity extends ListActivity {
 				dialog.setCancelable(true);
 				
 				populateDetailDialog(dialog, position);
-//				dialog.setOwnerActivity(ShowSearchActivity.this);
-//				dialog.show();
+				dialog.setOwnerActivity(ShowSearchActivity.this);
+				dialog.show();
 				//TODO show Dialog
 			}
 		});
